@@ -1,0 +1,9 @@
+from golang:latest
+expose 8080
+add . /srv
+env GOPATH /srv
+env GOBIN /srv
+workdir /srv
+run cd /srv/src/linkredirect ;go install
+run rm -rf /srv/src /srv/pkg /srv/bin
+cmd /srv/linkredirect

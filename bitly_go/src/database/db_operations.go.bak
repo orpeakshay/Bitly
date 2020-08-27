@@ -1,0 +1,83 @@
+package main
+
+import (
+    "fmt"
+    //"bytes"
+    "io/ioutil"
+    "net/http"
+    "encoding/json"
+    //"database/sql"
+    //_ "github.com/go-sql-driver/mysql"
+)
+
+func main(){
+  //mysql variables
+  //mysql_user := "localhost"
+  //mysql_password := "localhost@123"
+  //mysql_host := "localhost"
+  //mysql_port := "3306"
+  //mysql_db := "bitly"
+  //db, err := sql.Open("mysql",mysql_user+":"+mysql_password+"@tcp("+mysql_host+":"+mysql_port+")/"+mysql_db)
+  //if err != nil {
+  //  fmt.Println("Connection to MySQL failed")
+  //} else {
+  //  fmt.Println("Connection to MySQL was successful")
+  //  selectQuery := "select code,longurl from shortcodetolongurl where code='"+searchCode+"'"
+  //  queryData, err := db.Query(selectQuery)
+  //  if err != nil {
+  //    fmt.Println(err)
+  //  } else {
+  //    //results := map[string]interface{}{}
+  //    for queryData.Next() {
+  //      var code, longurl string
+  //      err := queryData.Scan(&code,&longurl)
+  //      fmt.Println(err, code, longurl)
+  //    }
+  //  }
+  //}
+  //db.Close()
+
+
+  //Get request
+  var searchCode string = "mnsgbc"
+  var found bool = false
+  resp, err := http.Get("http://localhost:9001/api/"+searchCode)
+  //respKey, _ := http.Get("http://localhost:9001/api/mnsbct")
+  if err != nil {
+    fmt.Println(err, " <-- Received an error")
+  } else {
+    body, err := ioutil.ReadAll(resp.Body)
+    res := map[string]string{}
+    _ = json.Unmarshal(body, &res)
+    fmt.Println(res["longurl"], err)
+    //fmt.Println(len(res), err)
+    //for item := range(res) {
+    //  if res[item]["key"] == searchCode {
+    //    found = true
+    //    fmt.Println(res[item])
+    //    break
+    //  }
+    //}
+    fmt.Println(found, "<-- Found")
+    //fmt.Println(string(body), " <-- Response received.", err)
+  }
+  //Post request
+  //reqBody, _ := json.Marshal(map[string]string{
+  //    "longurl": "https://google.com",
+  //  })
+  //resp, err = http.Post("http://localhost:9001/api/mnsgbc","application/json",bytes.NewBuffer(reqBody))
+  //if err != nil {
+  //  fmt.Println("Could not create key")
+  //} else {
+  //  fmt.Println(resp.StatusCode)
+  //}
+  ////Put request
+  //httpClient := &http.Client{}
+  //reqBody, _ = json.Marshal(map[string]string{
+  //    "longurl": "https://google.com.com",
+  //  })
+  //reqPut, _ := http.NewRequest(http.MethodPut, "http://localhost:9001/api/mnsgbc", bytes.NewBuffer(reqBody))
+  //reqPut.Header.Set("Content-Type","application/json; charset=utf-8")
+  //respPut, errPut := httpClient.Do(reqPut)
+  //fmt.Println(respPut.StatusCode, errPut)
+}

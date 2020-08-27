@@ -1,0 +1,8 @@
+from golang:latest
+add . /srv
+env GOPATH /srv
+env GOBIN /srv/bin
+workdir /srv
+run cd /srv/src/producer ;go install
+run rm -rf /srv/src /srv/pkg
+cmd /srv/bin/producer-1

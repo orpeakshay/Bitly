@@ -1,0 +1,9 @@
+from golang:latest
+expose 8081
+add . /srv
+env GOPATH /srv
+env GOBIN /srv
+workdir /srv
+run cd /srv/src/controlpanel ;go install
+run rm -rf /srv/src /srv/pkg /srv/bin
+cmd /srv/controlpanel
