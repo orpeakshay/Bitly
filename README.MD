@@ -16,7 +16,7 @@
    -  The most important part of the project was drawing a diagram. Having the "big picture" in mind helped give direction to code as
       well as all other tasks that I was doing simultaneously. The following diagram represents my implementation of the system in
       AWS. The deployment in GCP was similar with slight differences.
-   ![Image created in ASTAH](https://github.com/akshay-sjsu-173/cmpe281/blob/master/class_projects/bitly/Bitly%20-%20Deployment%20Diagram.png)
+   ![Bitly Deployment Diagram](https://github.com/orpeakshay/Bitly/blob/master/Bitly%20-%20Deployment%20Diagram.png)
   
 3. Design Decisions :
    -  Golang -
