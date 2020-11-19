@@ -1,7 +1,7 @@
 # Bitly Project
 #
 
-1. Getting Started :
+<b>1. Getting Started :</b>
    The requirements were simple. Create a service s close to Bitly as possible. After some self-assessment I decided to follow these steps:
    -  Learn to code in Golang
    -  Decide the algorithm to be used for creating short codes
@@ -12,13 +12,13 @@
    -  Finalize the infrastructure design
    -  Deploy infrastructure on AWS/GCP
    
-2. Deployment Diagram :
+<b>2. Deployment Diagram :</b>
    -  The most important part of the project was drawing a diagram. Having the "big picture" in mind helped give direction to code as
       well as all other tasks that I was doing simultaneously. The following diagram represents my implementation of the system in
       AWS. The deployment in GCP was similar with slight differences.
    ![Bitly Deployment Diagram](https://github.com/orpeakshay/Bitly/blob/master/Bitly%20-%20Deployment%20Diagram.png)
   
-3. Design Decisions :
+<b>3. Design Decisions :</b>
    -  Golang -
       -  I wanted to understand how a web server running on Golang functions. Hence, I made a decision to use the native "http/mux" instead of using 3rd party libraries like "gorilla/mux"
       -  I experimented by using channels as well as goroutines to implement parallel functions and finally decided that goroutines work fine for my use case. Goroutines simply execute in the background which means I did not need to keep track of channel size and other parameters while coding my APIs
@@ -48,7 +48,7 @@
       -  I considered applying a similar scaling to the NoSQL cache as well. However, since the NoSQL application is designed in a way where every new server needs to be made aware of the others, I decided against scaling them.
       -  Hence, the NoSQL cache is a fixed set of 5 servers running in AP mode.
    
-4. Challenges :
+<b>4. Challenges :</b>
    -  Creating unique hash codes -
       -  Initially I thought this would be the easiest part until I stumbled upon the problem of a "possibility" of duplicate hash codes. Eventhough I was implementing the system at a small scale, this was unacceptable.
       -  I tried to come up with my own logic of generating unique codes and also went through some blogs.
@@ -92,7 +92,7 @@
       -  For this, I have copied over the required binary or built the binary into my AMI
  
 
-5. Setting up the project :
+<b>5. Setting up the project :</b>
    -  AWS
       -  Deploy 5 servers and run the NoSQL java project on them. Make them aware of each other by registering against the /node endpoint
       -  Deploy a MySQL database and create required tables in it. We need two tables (shortcodetolongurl and access_stats)
@@ -110,7 +110,7 @@
       -  Deploy producer and database pods.
       -  Confugure firewall rules according to deployment diagram. Make sure MySQL database as well as NoSQL cache servers are reachable from the GKE cluster.
       
-6. Scope for Improvements :
+<b>6. Scope for Improvements :</b>
    -  User authentication -
       -  User authentication can be added before letting anyone use the shortening service. This would be a good way towards making the service paid.
       -  With user authentication, we can improve stats to user level or provide a user with a list of all the URLs he/she has shortened so far.
@@ -125,7 +125,7 @@
       -  I have hardcoded environment variables in my Go Applications at the moment.
       -  The best way to do this would be via kubernetes envoronment variables or by passing a configuration file to the Go code.
    
-- Referenced Links:
+<b>- Referenced Links:</b>
   - https://blog.merovius.de/2017/06/18/how-not-to-use-an-http-router.html
   - https://golang.org/pkg/net/http/
   - https://www.codementor.io/@anshulsanghi/so-you-wanna-start-developing-web-apps-with-go-huh-handle-handler-handlefunc-eziu2go2t
